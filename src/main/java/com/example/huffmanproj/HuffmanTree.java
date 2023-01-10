@@ -1,10 +1,16 @@
 package com.example.huffmanproj;
 
-
-
+import java.util.HashMap;
+import java.util.Map;
 import java.util.PriorityQueue;
 
 public class HuffmanTree {
+
+
+
+    public HuffmanTree(HashMap<Character, Integer> frequency) {
+
+    }
 
     // Create a Huffman coding tree from the given frequencies
     public static HuffmanNode createTree(int[] frequencies) {
@@ -32,4 +38,16 @@ public class HuffmanTree {
         return queue.poll();
     }
 
-}
+        public void getPrefixCodes(HuffmanNode node, Map<Character, String> prefixCodes, String code) {
+            if (node.left == null && node.right == null) {
+                // This is a leaf node, so it represents a character
+                prefixCodes.put(node.character, code);
+            } else {
+                // This is an internal node, so recursively traverse the tree
+                getPrefixCodes(node.left, prefixCodes, code + "0");
+                getPrefixCodes(node.right, prefixCodes, code + "1");
+            }
+        }
+    }
+
+

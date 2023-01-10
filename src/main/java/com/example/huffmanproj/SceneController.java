@@ -3,6 +3,7 @@ package com.example.huffmanproj;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
@@ -12,7 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-public class SceneController implements Initializable {
+public class SceneController {
     @FXML
     TextField inputFileTF = new TextField();
 
@@ -33,14 +34,10 @@ public class SceneController implements Initializable {
 
     Stage primaryStage;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
-
-    public SceneController(Stage primaryStage) {
-        this.primaryStage = primaryStage;
-    }
+//    @Override
+//    public void initialize(URL url, ResourceBundle resourceBundle) {
+//
+//    }
 
     public void browseForInputFile() {
         // Show the file chooser and update the input file field with the selected file
@@ -69,7 +66,9 @@ public class SceneController implements Initializable {
 
         // Encode the input file and write the encoded data to the output file
         try {
-            HuffmanEncoder.encode(inputFile.getPath(), outputFile.getPath());
+            HashMap<Character, Integer> frequency = FrequencyCounter.countFrequency(String.valueOf(inputFile));
+HuffmanEncoder.encode(inputFile.getPath(), outputFile.getPath(),frequency);
+       //  HuffmanNode root = HuffmanEncoder.readHuffmanTree()
         } catch (IOException e) {
             System.out.println("An I/O error occurred: " + e.getMessage());
         }
@@ -82,7 +81,9 @@ public class SceneController implements Initializable {
 
         // Read the encoded data from the input file and decode it
         try {
-            HuffmanEncoder.decode(inputFile.getPath(), outputFile.getPath(), HuffmanTree.createTree(new int[256]));
+            HuffmanNode root = HuffmanEncoder.readHuffmanTree(String.valueOf(outputFile));
+
+            HuffmanEncoder.decode(inputFile.getPath(),root ,outputFile.getPath());
         } catch (IOException e) {
             System.out.println("An I/O error occurred: " + e.getMessage());
         }

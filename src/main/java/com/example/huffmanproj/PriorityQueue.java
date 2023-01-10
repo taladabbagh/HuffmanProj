@@ -42,3 +42,14 @@ public class PriorityQueue {
         Arrays.sort(elements, 0, size, (a, b) -> a.getFrequency() - b.getFrequency());
     }
 }
+//    The priority queue is used to store and efficiently retrieve the nodes
+//    of the Huffman tree as it is being constructed.
+//        The priority queue ensures that the nodes with the lowest frequency
+//        are always at the front of the queue and can be accessed and combined
+//        into a single node first. This process continues until the entire Huffman tree
+//        is constructed, with the least frequent characters at the leaf nodes and the
+//        most frequent characters at the root.
+//
+//        By using a priority queue, Huffman coding is able to construct the optimal prefix code
+//        for a given input in O(n log n) time, where n is the number of characters in the input.
+//        This makes it a very efficient algorithm for compressing data.

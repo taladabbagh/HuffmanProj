@@ -26,3 +26,15 @@ public class FrequencyCounter {
         return frequency;
     }
 }
+
+//    One way that a hashmap might be used
+//    in Huffman coding is to store the mapping from each
+//    character to its corresponding prefix code once the
+//    Huffman tree has been constructed.This mapping can then
+//    be used to encode the input string efficiently.
+//
+//        Another use for a hashmap in Huffman coding is to store the frequency
+//        of each character in the input string,so that it can be used to construct
+//        the initial set of nodes for the Huffman tree.This can be done in O(n)time,
+//        where n is the number of characters in the input,by using a hashmap to count
+//        the occurrences of each character.
